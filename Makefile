@@ -8,26 +8,34 @@ else
 	CC=gcc
 endif
 
+AR=ar
 RM=rm -rf
 
-CFLAGS=-std=gnu99 -I./src/array -Wall -Werror
-LFLAGS=
-
-SRCFILES=src/array/array.c src/array/pointer_array.c src/tests/main.c src/tests/arraytests.c
-OBJFILES=$(subst .c,.o,$(SRCFILES))
-
+LIBNAME=libstructs
 OUTFILE=test_all
 
-all: test
+CFLAGS=-std=gnu99 -I./src/array -Wall -Werror
+LFLAGS=-L. $(subst lib,-l,$(LIBNAME))
+
+SRCFILES=src/array/array.c src/array/pointer_array.c
+OBJFILES=$(subst .c,.o,$(SRCFILES))
+
+TESTSRCFILES=src/tests/main.c src/tests/arraytests.c
+TESTOBJFILES=$(subst .c,.o,$(TESTSRCFILES))
+
+all: lib test
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-test: $(OBJFILES)
-	$(CC) -o $(OUTFILE) $(OBJFILES) $(LFLAGS)
+lib: $(OBJFILES)
+	$(AR) rcs $(LIBNAME).a $(OBJFILES)
+
+test: $(TESTOBJFILES)
+	$(CC) -o $(OUTFILE) $(TESTOBJFILES) $(LFLAGS)
 
 cleanobjs:
-	$(RM) $(OBJFILES)
+	$(RM) $(OBJFILES) $(TESTOBJFILES)
 
 clean: cleanobjs
-	$(RM) $(OUTFILE)
+	$(RM) $(OUTFILE) $(LIBNAME).a
