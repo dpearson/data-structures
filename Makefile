@@ -14,13 +14,13 @@ RM=rm -rf
 LIBNAME=libstructs
 OUTFILE=test_all
 
-CFLAGS=-std=gnu99 -I./src/array -Wall -Werror
+CFLAGS=-std=gnu99 -I./src/array -I./src/linked_list -Wall -Werror
 LFLAGS=-L. $(subst lib,-l,$(LIBNAME))
 
-SRCFILES=src/array/array.c src/array/pointer_array.c
+SRCFILES=src/array/array.c src/array/pointer_array.c src/linked_list/sll.c src/linked_list/dll.c
 OBJFILES=$(subst .c,.o,$(SRCFILES))
 
-TESTSRCFILES=src/tests/main.c src/tests/arraytests.c
+TESTSRCFILES=src/tests/main.c src/tests/arraytests.c src/tests/lltests.c
 TESTOBJFILES=$(subst .c,.o,$(TESTSRCFILES))
 
 all: lib test
