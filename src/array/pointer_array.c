@@ -82,14 +82,9 @@ bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity
  * Returns true if the operation succeded; otherwise
  * false is returned.
  */
-bool pointer_array_set(pointer_array *arr, void *elem, int index) {
-    if (index + 1 > arr->capacity) {
-        unsigned int capacity = arr->capacity * 2;
-        while (capacity < index + 1) {
-            capacity *= 2;
-        }
-        
-        bool res = _resize_pointer_array(&arr, capacity);
+bool pointer_array_set(pointer_array *arr, void *elem, unsigned int index) {
+    if (index >= arr->capacity) {
+        bool res = _resize_pointer_array(&arr, index + 1);
 		if (!res) {
 			return false;
 		}
@@ -126,7 +121,7 @@ bool pointer_array_append(pointer_array *arr, void *elem) {
  * Returns the element at the specified index,
  * or NULL if it couldn't be accessed.
  */
-void *pointer_array_get(pointer_array *arr, int index) {
+void *pointer_array_get(pointer_array *arr, unsigned int index) {
     return arr->data[index];
 }
 

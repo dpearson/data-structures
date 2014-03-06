@@ -24,10 +24,10 @@ typedef struct {
 
 extern array *array_new(size_t bucket_size);
 
-extern bool array_set(array *arr, void *elem, int index);
+extern bool array_set(array *arr, void *elem, unsigned int index);
 extern bool array_append(array *arr, void *elem);
 
-extern void *array_get(array *arr, int index);
+extern void *array_get(array *arr, unsigned int index);
 
 extern unsigned int array_length(array *arr);
 

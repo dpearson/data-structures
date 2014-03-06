@@ -24,10 +24,10 @@ typedef struct {
 
 extern pointer_array *pointer_array_new();
 
-extern bool pointer_array_set(pointer_array *arr, void *elem, int index);
+extern bool pointer_array_set(pointer_array *arr, void *elem, unsigned int index);
 extern bool pointer_array_append(pointer_array *arr, void *elem);
 
-extern void *pointer_array_get(pointer_array *arr, int index);
+extern void *pointer_array_get(pointer_array *arr, unsigned int index);
 
 extern unsigned int pointer_array_length(pointer_array *arr);
 

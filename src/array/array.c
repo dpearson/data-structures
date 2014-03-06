@@ -29,7 +29,7 @@ array *array_new(size_t bucket_size) {
     arr->capacity = initial_capacity;
     arr->length = 0;
 
-    arr->data = calloc(initial_capacity, bucket_size);
+    arr->data = malloc(initial_capacity * bucket_size);
 	if (arr->data == NULL) {
 		free(arr);
 		return NULL;
@@ -84,8 +84,8 @@ bool _resize_array(array **arr_ptr, unsigned int target_capacity) {
  * Returns true if the operation succeded; otherwise
  * false is returned.
  */
-bool array_set(array *arr, void *elem, int index) {
-    if (index - 1 > arr->capacity) {
+bool array_set(array *arr, void *elem, unsigned int index) {
+    if (index >= arr->capacity) {
 		bool res = _resize_array(&arr, index + 1);
 		if (!res) {
 			return false;
@@ -125,7 +125,7 @@ bool array_append(array *arr, void *elem) {
  * Returns the element at the specified index,
  * or NULL if it couldn't be accessed.
  */
-void *array_get(array *arr, int index) {
+void *array_get(array *arr, unsigned int index) {
 	unsigned int length = array_length(arr);
 	if (length <= index) {
 		return NULL;
