@@ -1,13 +1,17 @@
 //
 //  dll.h
-//  interpreter
+//  Data Structures
 //
 //  Created by David Pearson on 6/3/12.
-//  Copyright (c) 2012 David Pearson. All rights reserved.
+//  Copyright (c) 2012-2014 David Pearson. All rights reserved.
 //
 
-#ifndef interpreter_dll_h
-#define interpreter_dll_h
+#ifndef Data_Structures_dll_h
+#define Data_Structures_dll_h
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
     void *prev;
@@ -23,11 +27,11 @@ typedef struct {
 } ll_dlist;
 
 extern ll_dlist *dll_new();
-extern void dll_add(ll_dlist *list, void *elem, int index, void (*release_function)(void *));
+extern bool dll_set(ll_dlist *list, void *elem, int index, void (*release_function)(void *));
+extern bool dll_append(ll_dlist *list, void *elem, void (*release_function)(void *));
 extern void *dll_get(ll_dlist *list, int index);
 extern void *dll_remove(ll_dlist *list, int index);
 extern void dll_clear(ll_dlist *list);
 extern void dll_free(ll_dlist *list);
-
 
 #endif
