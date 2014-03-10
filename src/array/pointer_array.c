@@ -16,7 +16,7 @@ bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity
  */
 pointer_array *pointer_array_new() {
     unsigned int initial_capacity = 2;
-    
+
     pointer_array *arr = malloc(sizeof(pointer_array));
 	if (arr == NULL) {
 		return NULL;
@@ -25,14 +25,14 @@ pointer_array *pointer_array_new() {
     arr->bucket_size = sizeof(void *);
     arr->capacity = initial_capacity;
     arr->length = 0;
-    
+
     arr->data = calloc(initial_capacity, arr->bucket_size);
 	if (arr->data == NULL) {
 		free(arr);
 
 		return NULL;
 	}
-    
+
     return arr;
 }
 
@@ -49,26 +49,26 @@ pointer_array *pointer_array_new() {
  */
 bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity) {
 	pointer_array *arr = *arr_ptr;
-	
+
 	unsigned int new_capacity = arr->capacity * 2;
 	while (new_capacity < target_capacity) {
 		new_capacity *= 2;
 	}
-	
+
 	size_t old_size = arr->capacity * arr->bucket_size;
 	size_t new_size = new_capacity * arr->bucket_size;
     void *new_block = realloc(arr->data, new_size);
 	if (new_block == NULL) {
 		return false;
 	}
-	
+
     if (new_size > old_size) {
         memset(new_block + old_size, 0, new_size - old_size);
     }
-	
+
 	arr->data = new_block;
 	arr->capacity = new_capacity;
-	
+
 	return true;
 }
 
@@ -89,9 +89,9 @@ bool pointer_array_set(pointer_array *arr, void *elem, unsigned int index) {
 			return false;
 		}
     }
-    
+
     arr->data[index] = elem;
-    
+
     if (index + 1 > arr->length) {
         arr->length = index + 1;
     }
