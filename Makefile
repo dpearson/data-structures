@@ -20,7 +20,7 @@ LFLAGS=-L. $(subst lib,-l,$(LIBNAME))
 SRCFILES=src/array/array.c src/array/pointer_array.c src/linked_list/sll.c src/linked_list/dll.c src/string/cstr.c
 OBJFILES=$(subst .c,.o,$(SRCFILES))
 
-TESTSRCFILES=src/tests/main.c src/tests/arraytests.c src/tests/lltests.c
+TESTSRCFILES=src/tests/main.c src/tests/arraytests.c src/tests/lltests.c src/tests/stringtests.c
 TESTOBJFILES=$(subst .c,.o,$(TESTSRCFILES))
 
 all: lib test
