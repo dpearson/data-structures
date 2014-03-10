@@ -30,6 +30,8 @@ cstr *cstr_new() {
 		return NULL;
 	}
 
+	str->string[0] = '\0';
+
 	return str;
 }
 
