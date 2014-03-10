@@ -18,24 +18,24 @@ bool _resize_array(array **arr_ptr, unsigned int new_capacity);
  * Returns the new array, or NULL if it couldn't be created.
  */
 array *array_new(size_t bucket_size) {
-    unsigned int initial_capacity = 2;
+	unsigned int initial_capacity = 2;
 
-    array *arr = malloc(sizeof(array));
+	array *arr = malloc(sizeof(array));
 	if (arr == NULL) {
 		return NULL;
 	}
 
-    arr->bucket_size = bucket_size;
-    arr->capacity = initial_capacity;
-    arr->length = 0;
+	arr->bucket_size = bucket_size;
+	arr->capacity = initial_capacity;
+	arr->length = 0;
 
-    arr->data = malloc(initial_capacity * bucket_size);
+	arr->data = malloc(initial_capacity * bucket_size);
 	if (arr->data == NULL) {
 		free(arr);
 		return NULL;
 	}
 
-    return arr;
+	return arr;
 }
 
 /* Private: Resizes an array.
@@ -59,14 +59,14 @@ bool _resize_array(array **arr_ptr, unsigned int target_capacity) {
 
 	size_t old_size = arr->capacity * arr->bucket_size;
 	size_t new_size = new_capacity * arr->bucket_size;
-    void *new_block = realloc(arr->data, new_size);
+	void *new_block = realloc(arr->data, new_size);
 	if (new_block == NULL) {
 		return false;
 	}
 
-    if (new_size > old_size) {
-        memset(new_block + old_size, 0, new_size - old_size);
-    }
+	if (new_size > old_size) {
+		memset(new_block + old_size, 0, new_size - old_size);
+	}
 
 	arr->data = new_block;
 	arr->capacity = new_capacity;
@@ -85,19 +85,19 @@ bool _resize_array(array **arr_ptr, unsigned int target_capacity) {
  * false is returned.
  */
 bool array_set(array *arr, void *elem, unsigned int index) {
-    if (index >= arr->capacity) {
+	if (index >= arr->capacity) {
 		bool res = _resize_array(&arr, index + 1);
 		if (!res) {
 			return false;
 		}
-    }
+	}
 
-    size_t offset = index * arr->bucket_size;
-    memcpy(arr->data + offset, elem, arr->bucket_size);
+	size_t offset = index * arr->bucket_size;
+	memcpy(arr->data + offset, elem, arr->bucket_size);
 
-    if (index + 1 > arr->length) {
-        arr->length = index + 1;
-    }
+	if (index + 1 > arr->length) {
+		arr->length = index + 1;
+	}
 
 	return true;
 }
@@ -131,8 +131,8 @@ void *array_get(array *arr, unsigned int index) {
 		return NULL;
 	}
 
-    size_t offset = index * arr->bucket_size;
-    return arr->data + offset;
+	size_t offset = index * arr->bucket_size;
+	return arr->data + offset;
 }
 
 /* Public: Gets the length of an existing array.
@@ -153,6 +153,6 @@ unsigned int array_length(array *arr) {
  * Returns nothing.
  */
 void array_free(array *arr) {
-    free(arr->data);
-    free(arr);
+	free(arr->data);
+	free(arr);
 }

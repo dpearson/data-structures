@@ -3,7 +3,7 @@
 //  Data Structures
 //
 //  Created by David Pearson on 8/18/13.
-//  Copyright (c) 2013 David Pearson. All rights reserved.
+//  Copyright (c) 2013-2014 David Pearson. All rights reserved.
 //
 
 #ifndef Data_Structures_pointer_array_h
@@ -18,7 +18,7 @@ typedef struct {
 	size_t bucket_size;
 	unsigned int capacity;
     unsigned int length;
-    
+
     void **data;
 } pointer_array;
 

@@ -1,9 +1,9 @@
 //
-//  arraytests.c
+//  test/string.c
 //  Data Structures
 //
-//  Created by David Pearson on 8/18/13.
-//  Copyright (c) 2013-2014 David Pearson. All rights reserved.
+//  Created by David Pearson on 3/10/14.
+//  Copyright (c) 2014 David Pearson. All rights reserved.
 //
 
 #include <stdio.h>
@@ -13,12 +13,12 @@
 #include "cstr.h"
 
 bool cstr_test() {
-    cstr *str = cstr_new();
+	cstr *str = cstr_new();
 
-    if (str == NULL) {
-        printf("ERROR: Could not create cstring\n");
-        return false;
-    }
+	if (str == NULL) {
+		printf("ERROR: Could not create cstring\n");
+		return false;
+	}
 
 	char *val0 = "This is just a test";
 	char *val1 = "This is another test";
@@ -56,5 +56,5 @@ bool cstr_test() {
 
 	cstr_free(str);
 
-    return true;
+	return true;
 }

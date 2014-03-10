@@ -16,10 +16,10 @@
 bool sll_test() {
 	ll_slist *list = sll_new();
 
-    if (list == NULL) {
-        printf("ERROR: Could not create list\n");
-        return false;
-    }
+	if (list == NULL) {
+		printf("ERROR: Could not create list\n");
+		return false;
+	}
 
 	char *val = "Testing...";
 	char *val2 = "Another test...";
@@ -31,32 +31,32 @@ bool sll_test() {
 
 	char *ret = sll_get(list, 1);
 	if (strcmp(ret, val2) != 0) {
-        printf("ERROR: When reading linked list, expected %s but got %s", val2, ret);
-        return false;
-    }
+		printf("ERROR: When reading linked list, expected %s but got %s", val2, ret);
+		return false;
+	}
 
 	sll_remove(list, 1);
 
 	ret = sll_get(list, 1);
 	if (strcmp(ret, val) != 0) {
-        printf("ERROR: When reading linked list, expected %s but got %s", val, ret);
-        return false;
-    }
+		printf("ERROR: When reading linked list, expected %s but got %s", val, ret);
+		return false;
+	}
 
 	sll_free(list);
 
-    return true;
+	return true;
 }
 
 bool dll_test() {
 	ll_dlist *dlist = dll_new();
 
-    if (dlist == NULL) {
-        printf("ERROR: Could not create list\n");
-        return false;
-    }
+	if (dlist == NULL) {
+		printf("ERROR: Could not create list\n");
+		return false;
+	}
 
-    char *val = "Testing...";
+	char *val = "Testing...";
 	char *val2 = "Another test...";
 
 	dll_append(dlist, val, NULL);
@@ -66,19 +66,19 @@ bool dll_test() {
 
 	char *ret = dll_get(dlist, 1);
 	if (strcmp(ret, val2) != 0) {
-        printf("ERROR: When reading linked list, expected %s but got %s", val2, ret);
-        return false;
-    }
+		printf("ERROR: When reading linked list, expected %s but got %s", val2, ret);
+		return false;
+	}
 
 	dll_remove(dlist, 1);
 
 	ret = dll_get(dlist, 1);
 	if (strcmp(ret, val) != 0) {
-        printf("ERROR: When reading linked list, expected %s but got %s", val, ret);
-        return false;
-    }
+		printf("ERROR: When reading linked list, expected %s but got %s", val, ret);
+		return false;
+	}
 
 	dll_free(dlist);
 
-    return true;
+	return true;
 }

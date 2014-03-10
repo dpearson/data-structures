@@ -3,7 +3,7 @@
 //  Data Structures
 //
 //  Created by David Pearson on 8/18/13.
-//  Copyright (c) 2013 David Pearson. All rights reserved.
+//  Copyright (c) 2013-2014 David Pearson. All rights reserved.
 //
 
 #include "pointer_array.h"
@@ -15,25 +15,24 @@ bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity
  * Returns the new array, or NULL if it couldn't be created.
  */
 pointer_array *pointer_array_new() {
-    unsigned int initial_capacity = 2;
+	unsigned int initial_capacity = 2;
 
-    pointer_array *arr = malloc(sizeof(pointer_array));
+	pointer_array *arr = malloc(sizeof(pointer_array));
 	if (arr == NULL) {
 		return NULL;
 	}
 
-    arr->bucket_size = sizeof(void *);
-    arr->capacity = initial_capacity;
-    arr->length = 0;
+	arr->bucket_size = sizeof(void *);
+	arr->capacity = initial_capacity;
+	arr->length = 0;
 
-    arr->data = calloc(initial_capacity, arr->bucket_size);
+	arr->data = calloc(initial_capacity, arr->bucket_size);
 	if (arr->data == NULL) {
 		free(arr);
-
 		return NULL;
 	}
 
-    return arr;
+	return arr;
 }
 
 /* Private: Resizes an array.
@@ -57,14 +56,14 @@ bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity
 
 	size_t old_size = arr->capacity * arr->bucket_size;
 	size_t new_size = new_capacity * arr->bucket_size;
-    void *new_block = realloc(arr->data, new_size);
+	void *new_block = realloc(arr->data, new_size);
 	if (new_block == NULL) {
 		return false;
 	}
 
-    if (new_size > old_size) {
-        memset(new_block + old_size, 0, new_size - old_size);
-    }
+	if (new_size > old_size) {
+		memset(new_block + old_size, 0, new_size - old_size);
+	}
 
 	arr->data = new_block;
 	arr->capacity = new_capacity;
@@ -83,18 +82,18 @@ bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity
  * false is returned.
  */
 bool pointer_array_set(pointer_array *arr, void *elem, unsigned int index) {
-    if (index >= arr->capacity) {
-        bool res = _resize_pointer_array(&arr, index + 1);
+	if (index >= arr->capacity) {
+		bool res = _resize_pointer_array(&arr, index + 1);
 		if (!res) {
 			return false;
 		}
-    }
+	}
 
-    arr->data[index] = elem;
+	arr->data[index] = elem;
 
-    if (index + 1 > arr->length) {
-        arr->length = index + 1;
-    }
+	if (index + 1 > arr->length) {
+		arr->length = index + 1;
+	}
 
 	return true;
 }
@@ -122,7 +121,7 @@ bool pointer_array_append(pointer_array *arr, void *elem) {
  * or NULL if it couldn't be accessed.
  */
 void *pointer_array_get(pointer_array *arr, unsigned int index) {
-    return arr->data[index];
+	return arr->data[index];
 }
 
 /* Public: Gets the length of an existing array.
@@ -146,6 +145,6 @@ unsigned int pointer_array_length(pointer_array *arr) {
  * Returns nothing.
  */
 void pointer_array_free(pointer_array *arr) {
-    free(arr->data);
-    free(arr);
+	free(arr->data);
+	free(arr);
 }
