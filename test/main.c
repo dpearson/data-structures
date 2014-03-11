@@ -14,6 +14,7 @@ extern bool dll_test();
 extern bool array_test();
 extern bool pointer_array_test();
 extern bool cstr_test();
+extern bool hash_table_test();
 
 int main(int argc, const char * argv[])
 {
@@ -46,6 +47,12 @@ int main(int argc, const char * argv[])
 	} else {
 		printf("Error: C string tests fail\n");
 	}
+
+	if (hash_table_test()) {
+        printf("SUCCESS: Hash table tests pass\n");
+    } else {
+        printf("Error: Hash table tests fail\n");
+    }
 
 	return 0;
 }

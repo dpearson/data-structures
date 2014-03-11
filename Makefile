@@ -17,10 +17,10 @@ OUTFILE=test_all
 CFLAGS=-std=gnu99 -I./include -Wall -Werror
 LFLAGS=-L. $(subst lib,-l,$(LIBNAME))
 
-SRCFILES=src/array/array.c src/array/pointer_array.c src/linked_list/sll.c src/linked_list/dll.c src/string/cstr.c
+SRCFILES=src/array/array.c src/array/pointer_array.c src/hash_table/hash_table.c src/linked_list/sll.c src/linked_list/dll.c src/string/cstr.c
 OBJFILES=$(subst .c,.o,$(SRCFILES))
 
-TESTSRCFILES=test/main.c test/array.c test/linked_list.c test/string.c
+TESTSRCFILES=test/main.c test/array.c test/hash_table.c test/linked_list.c test/string.c
 TESTOBJFILES=$(subst .c,.o,$(TESTSRCFILES))
 
 all: lib test
