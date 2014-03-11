@@ -10,7 +10,7 @@ Run:
 
 	make
 
-to build the test cases. No library is currently built.
+to build the test cases and a static library, `libstructs.a`.
 
 ### Running tests ###
 
