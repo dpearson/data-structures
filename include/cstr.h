@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 David Pearson. All rights reserved.
 //
 
-#ifndef beale_cstr_h
-#define beale_cstr_h
+#ifndef Data_Structures_cstr_h
+#define Data_Structures_cstr_h
 
 #include <math.h>
 #include <stdbool.h>
