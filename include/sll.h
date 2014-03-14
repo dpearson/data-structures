@@ -13,9 +13,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
+typedef struct ll_selement {
     void *data;
-    void *next;
+    struct ll_selement *next;
     void (*release_function)(void *);
 } ll_selement;
 

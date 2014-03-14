@@ -13,10 +13,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
-    void *prev;
+typedef struct ll_delement {
+    struct ll_delement *prev;
     void *data;
-    void *next;
+    struct ll_delement *next;
     void (*release_function)(void *);
 } ll_delement;
 
