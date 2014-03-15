@@ -38,7 +38,7 @@ ll_dlist *dll_new() {
  * Returns true if the element was added successfully;
  * otherwise false is returned.
  */
-bool dll_set(ll_dlist *list, void *elem, int index, void (*release_function)(void *)) {
+bool dll_insert(ll_dlist *list, void *elem, int index, void (*release_function)(void *)) {
 	if (index > list->length) {
 		index = list->length;
 	}
@@ -85,6 +85,25 @@ bool dll_set(ll_dlist *list, void *elem, int index, void (*release_function)(voi
 	return true;
 }
 
+/* Public: Prepends an element to a linked list.
+ *
+ * list - The linked list to add the element to
+ * elem - A pointer to the element to be added, which is
+ *        not copied
+ * release_function - A function that frees memory allocated
+ *                    for elem
+ *
+ * Returns true if the element was added successfully;
+ * otherwise false is returned.
+ */
+bool dll_prepend(ll_dlist *list, void *elem, void (*release_function)(void *)) {
+  if (list != NULL) {
+    return dll_insert(list, elem, 0, release_function);
+  }
+
+  return false;
+}
+
 /* Public: Appends an element to a linked list.
  *
  * list - The linked list to add the element to
@@ -98,7 +117,7 @@ bool dll_set(ll_dlist *list, void *elem, int index, void (*release_function)(voi
  */
 bool dll_append(ll_dlist *list, void *elem, void (*release_function)(void *)) {
 	if (list != NULL) {
-		return dll_set(list, elem, list->length, release_function);
+		return dll_insert(list, elem, list->length, release_function);
 	}
 
 	return false;

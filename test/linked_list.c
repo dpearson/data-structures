@@ -25,9 +25,9 @@ bool sll_test() {
 	char *val2 = "Another test...";
 
 	sll_append(list, val, NULL);
-	sll_set(list, val2, 1, NULL);
-	sll_set(list, val, 2, NULL);
-	sll_set(list, val2, 3, NULL);
+	sll_insert(list, val2, 1, NULL);
+	sll_insert(list, val, 2, NULL);
+	sll_insert(list, val2, 3, NULL);
 
 	char *ret = sll_get(list, 1);
 	if (strcmp(ret, val2) != 0) {
@@ -60,9 +60,9 @@ bool dll_test() {
 	char *val2 = "Another test...";
 
 	dll_append(dlist, val, NULL);
-	dll_set(dlist, val2, 1, NULL);
-	dll_set(dlist, val, 2, NULL);
-	dll_set(dlist, val2, 3, NULL);
+	dll_insert(dlist, val2, 1, NULL);
+	dll_insert(dlist, val, 2, NULL);
+	dll_insert(dlist, val2, 3, NULL);
 
 	char *ret = dll_get(dlist, 1);
 	if (strcmp(ret, val2) != 0) {

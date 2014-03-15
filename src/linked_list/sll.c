@@ -37,7 +37,7 @@ ll_slist *sll_new() {
  * Returns true if the element was added successfully;
  * otherwise false is returned.
  */
-bool sll_set(ll_slist *list, void *elem, int index, void (*release_function)(void *)) {
+bool sll_insert(ll_slist *list, void *elem, int index, void (*release_function)(void *)) {
 	if (index > list->length) {
 		index = list->length;
 	}
@@ -72,6 +72,25 @@ bool sll_set(ll_slist *list, void *elem, int index, void (*release_function)(voi
 	return true;
 }
 
+/* Public: Prepends an element to a linked list.
+ *
+ * list - The linked list to add the element to
+ * elem - A pointer to the element to be added, which is
+ *        not copied
+ * release_function - A function that frees memory allocated
+ *                    for elem
+ *
+ * Returns true if the element was added successfully;
+ * otherwise false is returned.
+ */
+bool sll_prepend(ll_slist *list, void *elem, void (*release_function)(void *)) {
+  if (list != NULL) {
+    return sll_insert(list, elem, 0, release_function);
+  }
+
+  return false;
+}
+
 /* Public: Appends an element to a linked list.
  *
  * list - The linked list to add the element to
@@ -85,7 +104,7 @@ bool sll_set(ll_slist *list, void *elem, int index, void (*release_function)(voi
  */
 bool sll_append(ll_slist *list, void *elem, void (*release_function)(void *)) {
 	if (list != NULL) {
-		return sll_set(list, elem, list->length, release_function);
+		return sll_insert(list, elem, list->length, release_function);
 	}
 
 	return false;

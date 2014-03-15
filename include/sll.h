@@ -25,7 +25,8 @@ typedef struct {
 } ll_slist;
 
 extern ll_slist *sll_new();
-extern bool sll_set(ll_slist *list, void *elem, int index, void (*release_function)(void *));
+extern bool sll_insert(ll_slist *list, void *elem, int index, void (*release_function)(void *));
+extern bool sll_prepend(ll_slist *list, void *elem, void (*release_function)(void *));
 extern bool sll_append(ll_slist *list, void *elem, void (*release_function)(void *));
 extern void *sll_get(ll_slist *list, int index);
 extern void *sll_remove(ll_slist *list, int index);

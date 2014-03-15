@@ -31,13 +31,13 @@ hash_table *_hash_table_new_with_size(unsigned int size, unsigned int (*hash_fun
  */
 unsigned int default_hash_function(char *key) {
     unsigned int hash = 0;
-    
+
     char *i = key;
     while (*i != '\0') {
         hash += 3 * (*i) - 19;
         i++;
     }
-    
+
     return hash;
 }
 
@@ -51,7 +51,7 @@ void _hash_table_item_free(hash_table_item *item) {
     if (item->release_function != NULL) {
         item->release_function(item->value);
     }
-	
+
     free(item->key);
     free(item);
 }
@@ -90,7 +90,7 @@ bool _initialize_buckets(ll_dlist **array, size_t item_count) {
  */
 bool _hash_table_grow(hash_table *table) {
 	ll_dlist **list = table->items;
-	
+
 	unsigned int new_size = ceil(((double)table->bucket_count) * 1.5);
 	unsigned int old_size = table->bucket_count;
 
@@ -106,7 +106,7 @@ bool _hash_table_grow(hash_table *table) {
 	table->items = new_items;
 	table->bucket_count = new_size;
 	table->length = 0;
-	
+
     for (int i = 0; i < old_size; i++) {
 		ll_dlist *bucket = list[i];
 		if (bucket->length == 0) {
@@ -114,7 +114,7 @@ bool _hash_table_grow(hash_table *table) {
         }
 
         ll_delement *elem = bucket->first;
-		
+
         while (elem != NULL) {
             hash_table_item *item = elem->data;
             hash_table_set(table, item->value, item->key, item->release_function);
@@ -161,13 +161,13 @@ hash_table *_hash_table_new_with_size(unsigned int size, unsigned int (*hash_fun
     table->occupied_buckets = 0;
     table->length = 0;
     table->hash_function = hash_function;
-    
+
 	if (!_initialize_buckets(table->items, size)) {
 		free(table->items);
 		free(table);
 		return NULL;
 	}
-    
+
     return table;
 }
 
@@ -214,7 +214,7 @@ bool hash_table_set(hash_table *table, void *elem, char *key, void (*release_fun
 			return hash_table_set(table, elem, key, release_function);
         }
     }
-	
+
     if (item == NULL) {
         item = malloc(sizeof(hash_table_item));
 		if (item == NULL) {
@@ -230,8 +230,8 @@ bool hash_table_set(hash_table *table, void *elem, char *key, void (*release_fun
         item->key = strcpy(item->key, key);
         item->value = elem;
         item->release_function = release_function;
-		
-        return dll_set(bucket, item, item_count, (void (*)(void *))_hash_table_item_free);
+
+        return dll_insert(bucket, item, item_count, (void (*)(void *))_hash_table_item_free);
     } else {
         item->value = elem;
     }
@@ -253,14 +253,14 @@ void *hash_table_get(hash_table *table, char *key) {
     unsigned int index = table->hash_function(key) % table->bucket_count;
     ll_dlist *bucket = table->items[index];
     unsigned int item_count = bucket->length;
-	
+
     for (int i = 0; i < item_count; i++) {
         hash_table_item *item = dll_get(bucket, i);
         if (strcmp(key, item->key) == 0) {
             return item->value;
         }
     }
-	
+
     return NULL;
 }
 
@@ -275,7 +275,7 @@ void hash_table_free(hash_table *table) {
         dll_clear(table->items[i]);
 		dll_free(table->items[i]);
     }
-	
+
     free(table->items);
     free(table);
 }
