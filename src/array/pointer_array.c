@@ -82,7 +82,7 @@ bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity
  * false is returned.
  */
 bool pointer_array_set(pointer_array *arr, void *elem, unsigned int index) {
-	if (index >= arr->capacity) {
+  if (index >= arr->capacity) {
 		bool res = _resize_pointer_array(&arr, index + 1);
 		if (!res) {
 			return false;
@@ -121,7 +121,11 @@ bool pointer_array_append(pointer_array *arr, void *elem) {
  * or NULL if it couldn't be accessed.
  */
 void *pointer_array_get(pointer_array *arr, unsigned int index) {
-	return arr->data[index];
+	if (index >= arr->length) {
+    return NULL;
+  }
+
+  return arr->data[index];
 }
 
 /* Public: Gets the length of an existing array.

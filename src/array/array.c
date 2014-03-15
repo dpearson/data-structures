@@ -85,7 +85,7 @@ bool _resize_array(array **arr_ptr, unsigned int target_capacity) {
  * false is returned.
  */
 bool array_set(array *arr, void *elem, unsigned int index) {
-	if (index >= arr->capacity) {
+  if (index >= arr->capacity) {
 		bool res = _resize_array(&arr, index + 1);
 		if (!res) {
 			return false;
@@ -126,7 +126,11 @@ bool array_append(array *arr, void *elem) {
  * or NULL if it couldn't be accessed.
  */
 void *array_get(array *arr, unsigned int index) {
-	unsigned int length = array_length(arr);
+  if (index >= arr->length) {
+    return NULL;
+  }
+
+  unsigned int length = array_length(arr);
 	if (length <= index) {
 		return NULL;
 	}
