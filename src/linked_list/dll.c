@@ -97,11 +97,11 @@ bool dll_insert(ll_dlist *list, void *elem, int index, void (*release_function)(
  * otherwise false is returned.
  */
 bool dll_prepend(ll_dlist *list, void *elem, void (*release_function)(void *)) {
-  if (list != NULL) {
-    return dll_insert(list, elem, 0, release_function);
-  }
+	if (list != NULL) {
+	  return dll_insert(list, elem, 0, release_function);
+	}
 
-  return false;
+	return false;
 }
 
 /* Public: Appends an element to a linked list.

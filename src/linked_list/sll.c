@@ -84,11 +84,11 @@ bool sll_insert(ll_slist *list, void *elem, int index, void (*release_function)(
  * otherwise false is returned.
  */
 bool sll_prepend(ll_slist *list, void *elem, void (*release_function)(void *)) {
-  if (list != NULL) {
-    return sll_insert(list, elem, 0, release_function);
-  }
+	if (list != NULL) {
+	  return sll_insert(list, elem, 0, release_function);
+	}
 
-  return false;
+	return false;
 }
 
 /* Public: Appends an element to a linked list.

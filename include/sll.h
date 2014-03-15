@@ -14,14 +14,14 @@
 #include <stdlib.h>
 
 typedef struct ll_selement {
-    void *data;
-    struct ll_selement *next;
-    void (*release_function)(void *);
+	void *data;
+	struct ll_selement *next;
+	void (*release_function)(void *);
 } ll_selement;
 
 typedef struct {
-    unsigned int length;
-    ll_selement *first;
+	unsigned int length;
+	ll_selement *first;
 } ll_slist;
 
 extern ll_slist *sll_new();

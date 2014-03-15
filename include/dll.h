@@ -14,16 +14,16 @@
 #include <stdlib.h>
 
 typedef struct ll_delement {
-    struct ll_delement *prev;
-    void *data;
-    struct ll_delement *next;
-    void (*release_function)(void *);
+	struct ll_delement *prev;
+	void *data;
+	struct ll_delement *next;
+	void (*release_function)(void *);
 } ll_delement;
 
 typedef struct {
-    unsigned int length;
-    ll_delement *first;
-    ll_delement *last;
+	unsigned int length;
+	ll_delement *first;
+	ll_delement *last;
 } ll_dlist;
 
 extern ll_dlist *dll_new();

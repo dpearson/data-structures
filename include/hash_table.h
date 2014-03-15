@@ -19,10 +19,11 @@
 
 typedef struct {
 	unsigned int (*hash_function)(char *);
+	unsigned int bucket_count;
+	unsigned int occupied_buckets;
+	unsigned int length;
+
 	ll_dlist **items;
-  unsigned int bucket_count;
-  unsigned int occupied_buckets;
-  unsigned int length;
 } hash_table;
 
 extern hash_table *hash_table_new();
