@@ -22,13 +22,15 @@ typedef struct {
 	char *string;
 } cstr;
 
-cstr *cstr_new();
+extern cstr *cstr_new();
 
-bool cstr_set_value(cstr *str, char *val);
+extern bool cstr_set_value(cstr *str, char *val);
 
-bool cstr_cat(cstr *str, char *second);
-bool cstr_cat_int(cstr *str, int val);
+extern bool cstr_cat(cstr *str, char *second);
+extern bool cstr_cat_int(cstr *str, int val);
 
-void cstr_free(cstr *str);
+extern unsigned int cstr_length(cstr *str);
+
+extern void cstr_free(cstr *str);
 
 #endif
