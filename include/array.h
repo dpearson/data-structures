@@ -26,7 +26,6 @@ typedef struct {
 	array *array;
 
 	unsigned int current_index;
-	bool has_read;
 } array_iterator;
 
 extern array *array_new(size_t bucket_size);

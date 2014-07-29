@@ -153,7 +153,6 @@ array_iterator *array_iterator_get(array *arr) {
 
 	iter->array = arr;
 	iter->current_index = 0;
-	iter->has_read = false;
 
 	return iter;
 }
@@ -216,7 +215,6 @@ void *array_iterator_next(array_iterator *iter) {
 		void *elem = array_get(iter->array, iter->current_index);
 
 		iter->current_index += 1;
-		iter->has_read = true;
 
 		return elem;
 	}
