@@ -162,16 +162,6 @@ bool cstr_cat_int(cstr *str, int val) {
 	return retVal;
 }
 
-/* Public: Gets the length of an existing cstring.
- *
- * str - The string to determine the length of
- *
- * Returns the length of the cstring.
- */
-unsigned long cstr_length(cstr *str) {
-	return str->length;
-}
-
 /* Public: Frees memory used by a cstring, including
  *         both data and information about the cstring.
  *

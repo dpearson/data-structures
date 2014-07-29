@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 David Pearson. All rights reserved.
 //
 
-#ifndef Data_Structures_cstr_h
-#define Data_Structures_cstr_h
+#ifndef Data_Structures_str_h
+#define Data_Structures_str_h
 
 #include <math.h>
 #include <stdbool.h>
@@ -19,18 +19,16 @@ typedef struct {
 	unsigned long length;
 	unsigned long capacity;
 
-	char *string;
+	wchar_t *string;
 } cstr;
 
-extern cstr *cstr_new();
+cstr *str_new();
 
-extern bool cstr_set_value(cstr *str, char *val);
+bool str_set_value(str *str, wchar_t *val);
 
-extern bool cstr_cat(cstr *str, char *second);
-extern bool cstr_cat_int(cstr *str, int val);
+bool str_cat(str *str, wchar_t *second);
+bool str_cat_int(str *str, int val);
 
-extern unsigned long cstr_length(cstr *str);
-
-extern void cstr_free(cstr *str);
+void str_free(str *str);
 
 #endif
