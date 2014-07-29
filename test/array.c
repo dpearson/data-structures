@@ -43,6 +43,24 @@ bool array_test() {
 		}
 	}
 
+	array_iterator *iter = array_iterator_get(arr);
+	int i = 0;
+	while (array_iterator_has_next(iter)) {
+		double array_val = *(double *)array_iterator_next(iter);
+		if (i == 0 && array_val != test_val_0) {
+			printf("ERROR: When iterating over array, expected %f but got %f\n", test_val_0, array_val);
+			return false;
+		} else if (i == 2 && array_val != test_val_2) {
+			printf("ERROR: When iterating over array, expected %f but got %f\n", test_val_2, array_val);
+			return false;
+		} else if (i == 5 && array_val != test_val_5) {
+			printf("ERROR: When iterating over array, expected %f but got %f\n", test_val_5, array_val);
+			return false;
+		}
+
+		i++;
+	}
+
 	array_free(arr);
 
 	return true;

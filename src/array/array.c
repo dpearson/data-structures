@@ -29,7 +29,7 @@ array *array_new(size_t bucket_size) {
 	arr->capacity = initial_capacity;
 	arr->length = 0;
 
-	arr->data = malloc(initial_capacity * bucket_size);
+	arr->data = calloc(initial_capacity, bucket_size);
 	if (arr->data == NULL) {
 		free(arr);
 		return NULL;
@@ -137,6 +137,100 @@ void *array_get(array *arr, unsigned int index) {
 
 	size_t offset = index * arr->bucket_size;
 	return arr->data + offset;
+}
+
+/* Public: Gets an iterator for an array.
+ *
+ * arr - The array for which to get an iterator
+ *
+ * Returns the iterator.
+ */
+array_iterator *array_iterator_get(array *arr) {
+	array_iterator *iter = malloc(sizeof(array_iterator));
+	if (iter == NULL) {
+		return NULL;
+	}
+
+	iter->array = arr;
+	iter->current_index = -1;
+
+	return iter;
+}
+
+/* Public: Checks whether an iterator can step back
+ * to and read another element without moving
+ * the iterator.
+ *
+ * iter - The iterator to check
+ *
+ * Returns true if another element exists and the
+ * iterator can be moved back.
+ */
+bool array_iterator_has_previous(array_iterator *iter) {
+	return iter->current_index >= 1;
+}
+
+/* Public: Checks whether an iterator can advance
+ * to and read another element without advancing
+ * the iterator.
+ *
+ * iter - The iterator to check
+ *
+ * Returns true if another element exists and the
+ * iterator can be advanced.
+ */
+bool array_iterator_has_next(array_iterator *iter) {
+	return iter->current_index + 1 < iter->array->length;
+}
+
+/* Public: Moves an iterator back and returns the
+ * previous element.
+ *
+ * iter - The iterator to use
+ *
+ * Returns the element at the previous index,
+ * or NULL if it couldn't be accessed.
+ */
+void *array_iterator_previous(array_iterator *iter) {
+	if (array_iterator_has_previous(iter)) {
+		void *elem = array_get(iter->array, iter->current_index - 1);
+		
+		iter->current_index -= 1;
+		
+		return elem;
+	}
+	
+	return NULL;
+}
+
+/* Public: Advances an iterator and returns the next element.
+ *
+ * iter - The iterator to use
+ *
+ * Returns the element at the next index,
+ * or NULL if it couldn't be accessed.
+ */
+void *array_iterator_next(array_iterator *iter) {
+	if (array_iterator_has_next(iter)) {
+		void *elem = array_get(iter->array, iter->current_index + 1);
+
+		iter->current_index += 1;
+
+		return elem;
+	}
+
+	return NULL;
+}
+
+/* Public: Frees an iterator. After calling this
+ * method, the iterator should be considered unusable.
+ *
+ * iter - The iterator to free
+ *
+ * Returns nothing.
+ */
+void array_iterator_free(array_iterator *iter) {
+	free(iter);
 }
 
 /* Public: Gets the length of an existing array.
