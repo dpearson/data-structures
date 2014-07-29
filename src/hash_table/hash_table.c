@@ -100,6 +100,8 @@ bool _hash_table_grow(hash_table *table) {
 	}
 	
 	if (!_initialize_buckets(new_items, new_size)) {
+		free(new_items);
+		
 		return false;
 	}
 	

@@ -32,6 +32,7 @@ bool cstr_test() {
 	cstr_set_value(str, val0);
 	if (strcmp(str->string, val0) != 0) {
 		printf("ERROR: When reading cstring, expected %s but got %s\n", val0, str->string);
+		free(val2);
 		return false;
 	}
 
@@ -51,6 +52,12 @@ bool cstr_test() {
 	cstr_cat_int(str, -5);
 	if (strcmp(str->string, "This is another testThis is just a test-5") != 0) {
 		printf("ERROR: When reading cstring, expected %s%s-5 but got %s\n", val1, val0, str->string);
+		return false;
+	}
+
+	cstr_cat_int(str, 0);
+	if (strcmp(str->string, "This is another testThis is just a test-50") != 0) {
+		printf("ERROR: When reading cstring, expected %s%s-50 but got %s\n", val1, val0, str->string);
 		return false;
 	}
 
