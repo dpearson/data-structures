@@ -152,7 +152,8 @@ array_iterator *array_iterator_get(array *arr) {
 	}
 
 	iter->array = arr;
-	iter->current_index = -1;
+	iter->current_index = 0;
+	iter->has_read = false;
 
 	return iter;
 }
@@ -180,7 +181,7 @@ bool array_iterator_has_previous(array_iterator *iter) {
  * iterator can be advanced.
  */
 bool array_iterator_has_next(array_iterator *iter) {
-	return iter->current_index + 1 < iter->array->length;
+	return iter->current_index < iter->array->length;
 }
 
 /* Public: Moves an iterator back and returns the
@@ -212,9 +213,10 @@ void *array_iterator_previous(array_iterator *iter) {
  */
 void *array_iterator_next(array_iterator *iter) {
 	if (array_iterator_has_next(iter)) {
-		void *elem = array_get(iter->array, iter->current_index + 1);
+		void *elem = array_get(iter->array, iter->current_index);
 
 		iter->current_index += 1;
+		iter->has_read = true;
 
 		return elem;
 	}

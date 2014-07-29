@@ -61,6 +61,24 @@ bool array_test() {
 		i++;
 	}
 
+	i = array_length(arr) - 1;
+
+	while (array_iterator_has_previous(iter)) {
+		double array_val = *(double *)array_iterator_previous(iter);
+		if (i == 0 && array_val != test_val_0) {
+			printf("ERROR: When iterating backward over array, expected %f but got %f\n", test_val_0, array_val);
+			return false;
+		} else if (i == 2 && array_val != test_val_2) {
+			printf("ERROR: When iterating backward over array, expected %f but got %f\n", test_val_2, array_val);
+			return false;
+		} else if (i == 5 && array_val != test_val_5) {
+			printf("ERROR: When iterating backward over array, expected %f but got %f\n", test_val_5, array_val);
+			return false;
+		}
+		
+		i--;
+	}
+
 	array_free(arr);
 
 	return true;
