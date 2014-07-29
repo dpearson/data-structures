@@ -1,0 +1,9 @@
+# Object files
+*.o
+*.a
+
+# The test binary
+test_all
+
+# The folder containing the Xcode project
+xcode
