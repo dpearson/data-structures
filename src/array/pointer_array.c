@@ -128,6 +128,100 @@ void *pointer_array_get(pointer_array *arr, unsigned int index) {
 	return arr->data[index];
 }
 
+/* Public: Gets an iterator for a pointer array.
+ *
+ * arr - The array for which to get an iterator
+ *
+ * Returns the iterator.
+ */
+pointer_array_iterator *pointer_array_iterator_get(pointer_array *arr) {
+	pointer_array_iterator *iter = malloc(sizeof(pointer_array_iterator));
+	if (iter == NULL) {
+		return NULL;
+	}
+	
+	iter->array = arr;
+	iter->current_index = 0;
+	
+	return iter;
+}
+
+/* Public: Checks whether an iterator can step back
+ * to and read another element without moving
+ * the iterator.
+ *
+ * iter - The iterator to check
+ *
+ * Returns true if another element exists and the
+ * iterator can be moved back.
+ */
+bool pointer_array_iterator_has_previous(pointer_array_iterator *iter) {
+	return iter->current_index >= 1;
+}
+
+/* Public: Checks whether an iterator can advance
+ * to and read another element without advancing
+ * the iterator.
+ *
+ * iter - The iterator to check
+ *
+ * Returns true if another element exists and the
+ * iterator can be advanced.
+ */
+bool pointer_array_iterator_has_next(pointer_array_iterator *iter) {
+	return iter->current_index < iter->array->length;
+}
+
+/* Public: Moves an iterator back and returns the
+ * previous element.
+ *
+ * iter - The iterator to use
+ *
+ * Returns the element at the previous index,
+ * or NULL if it couldn't be accessed.
+ */
+void *pointer_array_iterator_previous(pointer_array_iterator *iter) {
+	if (pointer_array_iterator_has_previous(iter)) {
+		void *elem = pointer_array_get(iter->array, iter->current_index - 1);
+		
+		iter->current_index -= 1;
+		
+		return elem;
+	}
+	
+	return NULL;
+}
+
+/* Public: Advances an iterator and returns the next element.
+ *
+ * iter - The iterator to use
+ *
+ * Returns the element at the next index,
+ * or NULL if it couldn't be accessed.
+ */
+void *pointer_array_iterator_next(pointer_array_iterator *iter) {
+	if (pointer_array_iterator_has_next(iter)) {
+		void *elem = pointer_array_get(iter->array, iter->current_index);
+		
+		iter->current_index += 1;
+		
+		return elem;
+	}
+	
+	return NULL;
+}
+
+/* Public: Frees an iterator. After calling this
+ * method, the iterator should be considered unusable.
+ *
+ * iter - The iterator to free
+ *
+ * Returns nothing.
+ */
+void pointer_array_iterator_free(pointer_array_iterator *iter) {
+	free(iter);
+}
+
 /* Public: Gets the length of an existing array.
  *
  * arr - The array to determine the length of

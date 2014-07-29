@@ -79,6 +79,7 @@ bool array_test() {
 		i--;
 	}
 
+	array_iterator_free(iter);
 	array_free(arr);
 
 	return true;
@@ -114,6 +115,43 @@ bool pointer_array_test() {
 		}
 	}
 
+	pointer_array_iterator *iter = pointer_array_iterator_get(arr);
+	int i = 0;
+	while (pointer_array_iterator_has_next(iter)) {
+		char *array_val = (char *)pointer_array_iterator_next(iter);
+		if (i == 0 && strcmp(array_val, test_val_0) != 0) {
+			printf("ERROR: When reading array, expected %s but got %s\n", test_val_0, array_val);
+			return false;
+		} else if (i == 2 && strcmp(array_val, test_val_2) != 0) {
+			printf("ERROR: When reading array, expected %s but got %s\n", test_val_2, array_val);
+			return false;
+		} else if (i == 5 && strcmp(array_val, test_val_5)) {
+			printf("ERROR: When reading array, expected %s but got %s\n", test_val_5, array_val);
+			return false;
+		}
+
+		i++;
+	}
+
+	i = pointer_array_length(arr) - 1;
+	
+	while (pointer_array_iterator_has_previous(iter)) {
+		char *array_val = (char *)pointer_array_iterator_previous(iter);
+		if (i == 0 && strcmp(array_val, test_val_0) != 0) {
+			printf("ERROR: When reading array, expected %s but got %s\n", test_val_0, array_val);
+			return false;
+		} else if (i == 2 && strcmp(array_val, test_val_2) != 0) {
+			printf("ERROR: When reading array, expected %s but got %s\n", test_val_2, array_val);
+			return false;
+		} else if (i == 5 && strcmp(array_val, test_val_5)) {
+			printf("ERROR: When reading array, expected %s but got %s\n", test_val_5, array_val);
+			return false;
+		}
+		
+		i++;
+	}
+
+	pointer_array_iterator_free(iter);
 	pointer_array_free(arr);
 
 	return true;
