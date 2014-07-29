@@ -25,7 +25,7 @@ pointer_array *pointer_array_new() {
 	arr->bucket_size = sizeof(void *);
 	arr->capacity = initial_capacity;
 	arr->length = 0;
-
+	
 	arr->data = calloc(initial_capacity, arr->bucket_size);
 	if (arr->data == NULL) {
 		free(arr);

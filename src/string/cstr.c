@@ -26,7 +26,7 @@ cstr *cstr_new() {
 	str->string = malloc(initial_capacity * sizeof(char));
 	if (str->string == NULL) {
 		free(str);
-
+		
 		return NULL;
 	}
 
