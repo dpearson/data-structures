@@ -1,10 +1,10 @@
-//
-//  lltests.c
-//  Data Structures
-//
-//  Created by David Pearson on 6/3/12.
-//  Copyright (c) 2012-2014 David Pearson. All rights reserved.
-//
+/*
+ *  lltests.c
+ *  Data Structures
+ *
+ *  Created by David Pearson on 6/3/12.
+ *  Copyright (c) 2012-2014 David Pearson. All rights reserved.
+ */
 
 #include <stdio.h>
 #include <stdbool.h>

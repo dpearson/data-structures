@@ -1,10 +1,10 @@
-//
-//  dll.h
-//  Data Structures
-//
-//  Created by David Pearson on 6/3/12.
-//  Copyright (c) 2012-2014 David Pearson. All rights reserved.
-//
+/*
+ *  dll.h
+ *  Data Structures
+ *
+ *  Created by David Pearson on 6/3/12.
+ *  Copyright (c) 2012-2014 David Pearson. All rights reserved.
+ */
 
 #ifndef Data_Structures_dll_h
 #define Data_Structures_dll_h

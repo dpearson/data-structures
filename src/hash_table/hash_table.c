@@ -1,10 +1,10 @@
-//
-//  hash_table.c
-//  Data Structures
-//
-//  Created by David Pearson on 7/29/13.
-//  Copyright (c) 2013-2014 David Pearson. All rights reserved.
-//
+/*
+ *  hash_table.c
+ *  Data Structures
+ *
+ *  Created by David Pearson on 7/29/13.
+ *  Copyright (c) 2013-2014 David Pearson. All rights reserved.
+ */
 
 #include "hash_table.h"
 

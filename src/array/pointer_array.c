@@ -1,10 +1,10 @@
-//
-//  pointer_array.c
-//  Data Structures
-//
-//  Created by David Pearson on 8/18/13.
-//  Copyright (c) 2013-2014 David Pearson. All rights reserved.
-//
+/*
+ *  pointer_array.c
+ *  Data Structures
+ *
+ *  Created by David Pearson on 8/18/13.
+ *  Copyright (c) 2013-2014 David Pearson. All rights reserved.
+ */
 
 #include "pointer_array.h"
 

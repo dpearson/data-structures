@@ -1,10 +1,10 @@
-//
-//  main.c
-//  Data Structures
-//
-//  Created by David Pearson on 7/29/13.
-//  Copyright (c) 2013-2014 David Pearson. All rights reserved.
-//
+/*
+ *  main.c
+ *  Data Structures
+ *
+ *  Created by David Pearson on 7/29/13.
+ *  Copyright (c) 2013-2014 David Pearson. All rights reserved.
+ */
 
 #include <stdio.h>
 #include <stdbool.h>

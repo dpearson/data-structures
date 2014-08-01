@@ -1,10 +1,10 @@
-//
-//  test/string.c
-//  Data Structures
-//
-//  Created by David Pearson on 3/10/14.
-//  Copyright (c) 2014 David Pearson. All rights reserved.
-//
+/*
+ *  test/string.c
+ *  Data Structures
+ *
+ *  Created by David Pearson on 3/10/14.
+ *  Copyright (c) 2014 David Pearson. All rights reserved.
+ */
 
 #include <stdio.h>
 #include <stdbool.h>

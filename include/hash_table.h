@@ -1,10 +1,10 @@
-//
-//  hash_table.h
-//  Data Structures
-//
-//  Created by David Pearson on 7/29/13.
-//  Copyright (c) 2013 David Pearson. All rights reserved.
-//
+/*
+ *  hash_table.h
+ *  Data Structures
+ *
+ *  Created by David Pearson on 7/29/13.
+ *  Copyright (c) 2013 David Pearson. All rights reserved.
+ */
 
 #ifndef Data_Structures_hash_table_h
 #define Data_Structures_hash_table_h

@@ -1,10 +1,10 @@
-//
-//  array.c
-//  Data Structures
-//
-//  Created by David Pearson on 7/30/13.
-//  Copyright (c) 2013-2014 David Pearson. All rights reserved.
-//
+/*
+ *  array.c
+ *  Data Structures
+ *
+ *  Created by David Pearson on 7/30/13.
+ *  Copyright (c) 2013-2014 David Pearson. All rights reserved.
+ */
 
 #include "array.h"
 

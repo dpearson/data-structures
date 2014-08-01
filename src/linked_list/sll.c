@@ -1,10 +1,10 @@
-//
-//  sll.c
-//  Data Structures
-//
-//  Created by David Pearson on 6/1/12.
-//  Copyright (c) 2012-2014 David Pearson. All rights reserved.
-//
+/*
+ *  sll.c
+ *  Data Structures
+ *
+ *  Created by David Pearson on 6/1/12.
+ *  Copyright (c) 2012-2014 David Pearson. All rights reserved.
+ */
 
 #include "sll.h"
 

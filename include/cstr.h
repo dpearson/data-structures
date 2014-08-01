@@ -1,10 +1,10 @@
-//
-//  cstr.h
-//  Data Structures
-//
-//  Created by David Pearson on 3/3/14.
-//  Copyright (c) 2014 David Pearson. All rights reserved.
-//
+/*
+ *  cstr.h
+ *  Data Structures
+ *
+ *  Created by David Pearson on 3/3/14.
+ *  Copyright (c) 2014 David Pearson. All rights reserved.
+ */
 
 #ifndef Data_Structures_cstr_h
 #define Data_Structures_cstr_h
