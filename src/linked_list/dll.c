@@ -229,7 +229,8 @@ void *dll_remove(ll_dlist *list, int index) {
 
 	ll_delement *prev = list->first;
 
-	for (int i = 1; i < index; i++) {
+	int i = 1;
+	for (i = 1; i < index; i++) {
 		prev = prev->next;
 	}
 

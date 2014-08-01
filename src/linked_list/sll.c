@@ -191,7 +191,8 @@ void *sll_remove(ll_slist *list, int index) {
 
 	ll_selement *prev = list->first;
 
-	for (int i = 1; i < index; i++) {
+	int i = 1;
+	for (i = 1; i < index; i++) {
 		prev = prev->next;
 	}
 

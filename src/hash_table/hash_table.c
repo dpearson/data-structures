@@ -65,10 +65,12 @@ void _hash_table_item_free(hash_table_item *item) {
  * Returns the new array, or NULL if it couldn't be created.
  */
 bool _initialize_buckets(ll_dlist **array, size_t item_count) {
-	for (int i = 0; i < item_count; i++) {
+	int i = 0;
+	for (i = 0; i < item_count; i++) {
 		array[i] = dll_new();
 		if (array[i] == NULL) {
-			for (int j = 0; j < i; j++) {
+			int j = 0;
+			for (j = 0; j < i; j++) {
 				dll_free(array[j]);
 			}
 			
@@ -109,7 +111,8 @@ bool _hash_table_grow(hash_table *table) {
 	table->bucket_count = new_size;
 	table->length = 0;
 	
-	for (int i = 0; i < old_size; i++) {
+	int i = 0;
+	for (i = 0; i < old_size; i++) {
 		ll_dlist *bucket = list[i];
 		if (bucket->length == 0) {
 			continue;
@@ -202,7 +205,8 @@ bool hash_table_set(hash_table *table, void *elem, char *key, void (*release_fun
 	hash_table_item *item = NULL;
 	if (item_count != 0) {
 		hash_table_item *curr = NULL;
-		for (int i = 0; i < item_count; i++) {
+		int i = 0;
+		for (i = 0; i < item_count; i++) {
 			curr = dll_get(bucket, i);
 			if (strcmp(key, curr->key) == 0) {
 				item = curr;
@@ -256,7 +260,8 @@ void *hash_table_get(hash_table *table, char *key) {
 	ll_dlist *bucket = table->items[index];
 	unsigned int item_count = bucket->length;
 	
-	for (int i = 0; i < item_count; i++) {
+	int i = 0;
+	for (i = 0; i < item_count; i++) {
 		hash_table_item *item = dll_get(bucket, i);
 		if (strcmp(key, item->key) == 0) {
 			return item->value;
@@ -273,7 +278,8 @@ void *hash_table_get(hash_table *table, char *key) {
  * Returns nothing.
  */
 void hash_table_free(hash_table *table) {
-	for (int i = 0; i < table->bucket_count; i++) {
+	int i = 0;
+	for (i = 0; i < table->bucket_count; i++) {
 		dll_clear(table->items[i]);
 		dll_free(table->items[i]);
 	}
