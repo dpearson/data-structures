@@ -152,8 +152,16 @@ bool cstr_cat_int(cstr *str, int val) {
 	if (new_string == NULL) {
 		return false;
 	}
-
+	
+#if __STDC_VERSION__ >= 199901L
 	snprintf(new_string, digits, "%d", val);
+#else
+	/* Fall back on sprintf() for C89 support
+	 * Since we know the number of digits, this
+	 * /should/ be okay.
+	 */
+	sprintf(new_string, "%d", val);
+#endif
 
 	bool retVal = cstr_cat(str, new_string);
 
