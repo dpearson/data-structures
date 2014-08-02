@@ -27,25 +27,25 @@ bool hash_table_test() {
     hash_table_set(table, test_val_0, "test0", NULL);
     hash_table_set(table, test_val_1, "test1", NULL);
     hash_table_set(table, test_val_2, "another_test", NULL);
-
+	
     char *value = hash_table_get(table, "test0");
     if (value != NULL && strcmp(value, test_val_0) != 0) {
         printf("ERROR: When reading hash table, expected \"%s\" but got \"%s\"\n", test_val_0, value);
         return false;
     }
-
+	
     value = hash_table_get(table, "test1");
     if (value != NULL && strcmp(value, test_val_1) != 0) {
         printf("ERROR: When reading hash table, expected \"%s\" but got \"%s\"\n", test_val_1, value);
         return false;
     }
-
+	
     value = hash_table_get(table, "another_test");
     if (value != NULL && strcmp(value, test_val_2) != 0) {
         printf("ERROR: When reading hash table, expected \"%s\" but got \"%s\"\n", test_val_2, value);
         return false;
     }
-
+	
     hash_table_free(table);
     
     return true;

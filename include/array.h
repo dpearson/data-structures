@@ -18,13 +18,13 @@ typedef struct {
 	size_t bucket_size;
 	unsigned int capacity;
 	unsigned int length;
-
+	
 	void *data;
 } array;
 
 typedef struct {
 	array *array;
-
+	
 	unsigned int current_index;
 } array_iterator;
 

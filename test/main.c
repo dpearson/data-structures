@@ -23,36 +23,36 @@ int main(int argc, const char * argv[])
 	} else {
 		printf("Error: Singly linked list tests fail\n");
 	}
-
+	
 	if (dll_test()) {
 		printf("SUCCESS: Doubly linked list tests pass\n");
 	} else {
 		printf("Error: Doubly linked list tests fail\n");
 	}
-
+	
 	if (array_test()) {
 		printf("SUCCESS: Array tests pass\n");
 	} else {
 		printf("Error: Array tests fail\n");
 	}
-
+	
 	if (pointer_array_test()) {
 		printf("SUCCESS: Pointer array tests pass\n");
 	} else {
 		printf("Error: Pointer array tests fail\n");
 	}
-
+	
 	if (cstr_test()) {
 		printf("SUCCESS: C string tests pass\n");
 	} else {
 		printf("Error: C string tests fail\n");
 	}
-
+	
 	if (hash_table_test()) {
         printf("SUCCESS: Hash table tests pass\n");
     } else {
         printf("Error: Hash table tests fail\n");
     }
-
+	
 	return 0;
 }

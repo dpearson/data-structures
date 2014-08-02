@@ -18,7 +18,7 @@ typedef struct {
 	size_t bucket_size;
 	unsigned int capacity;
 	unsigned int length;
-
+	
 	void **data;
 } pointer_array;
 

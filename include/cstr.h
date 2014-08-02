@@ -18,7 +18,7 @@
 typedef struct {
 	unsigned long length;
 	unsigned long capacity;
-
+	
 	char *string;
 } cstr;
 

@@ -22,7 +22,7 @@ typedef struct {
 	unsigned int bucket_count;
 	unsigned int occupied_buckets;
 	unsigned int length;
-
+	
 	ll_dlist **items;
 } hash_table;
 
