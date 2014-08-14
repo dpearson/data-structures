@@ -15,16 +15,32 @@
 #include <string.h>
 
 typedef struct {
+	/* The size in bytes of each bucket of the array
+	 */
 	size_t bucket_size;
+	
+	/* The number of buckets that have been allocated
+	 * for the array
+	 */
 	unsigned int capacity;
+	
+	/* The number of buckets currently in use, including
+	 * empty buckets between occupied ones
+	 */
 	unsigned int length;
 	
+	/* The array data
+	 */
 	void **data;
 } pointer_array;
 
 typedef struct {
+	/* A pointer to the array being iterated over
+	 */
 	pointer_array *array;
 	
+	/* The current iteration index
+	 */
 	unsigned int current_index;
 } pointer_array_iterator;
 

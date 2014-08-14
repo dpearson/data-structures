@@ -16,9 +16,18 @@
 #include <string.h>
 
 typedef struct {
+	/* The number of character bytes in the string, which may or may
+	 * not equal the actual number of characters (depending on the
+	 * encoding)
+	 */
 	unsigned long length;
+	
+	/* The number of character bytes allocated for the string
+	 */
 	unsigned long capacity;
 	
+	/* The actual cstring data, terminated with the null terminator
+	 */
 	char *string;
 } cstr;
 

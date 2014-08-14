@@ -18,11 +18,25 @@
 #include "dll.h"
 
 typedef struct {
+	/* The hash function used to build the table
+	 */
 	unsigned int (*hash_function)(char *);
+	
+	/* The number of buckets allocated for the table
+	 */
 	unsigned int bucket_count;
+	
+	/* The number of occupied buckets
+	 */
 	unsigned int occupied_buckets;
+	
+	/* The number of items in the table
+	 */
 	unsigned int length;
 	
+	/* An array of pointers to the linked lists
+	 * actually used to store items
+	 */
 	ll_dlist **items;
 } hash_table;
 

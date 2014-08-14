@@ -14,16 +14,37 @@
 #include <stdlib.h>
 
 typedef struct ll_delement {
+	/* A pointer to the previous element
+	 */
 	struct ll_delement *prev;
-	void *data;
+	
+	/* A pointer to the previous element
+	 */
 	struct ll_delement *next;
+	
+	/* A pointer to the data for this element
+	 */
+	void *data;
+	
+	/* A descructor function for this element,
+	 * which will be called when this element
+	 * is removed from the list
+	 */
 	void (*release_function)(void *);
 } ll_delement;
 
 typedef struct {
-	unsigned int length;
+	/* The list's head
+	 */
 	ll_delement *first;
+	
+	/* The list's tail
+	 */
 	ll_delement *last;
+	
+	/* The number of elements in the list
+	 */
+	unsigned int length;
 } ll_dlist;
 
 extern ll_dlist *dll_new();

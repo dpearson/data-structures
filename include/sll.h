@@ -14,14 +14,29 @@
 #include <stdlib.h>
 
 typedef struct ll_selement {
-	void *data;
+	/* A pointer to the previous element
+	 */
 	struct ll_selement *next;
+	
+	/* A pointer to the data for this element
+	 */
+	void *data;
+	
+	/* A descructor function for this element,
+	 * which will be called when this element
+	 * is removed from the list
+	 */
 	void (*release_function)(void *);
 } ll_selement;
 
 typedef struct {
-	unsigned int length;
+	/* The list's head
+	 */
 	ll_selement *first;
+	
+	/* The number of elements in the list
+	 */
+	unsigned int length;
 } ll_slist;
 
 extern ll_slist *sll_new();
