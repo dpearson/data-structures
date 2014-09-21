@@ -18,17 +18,17 @@ typedef struct {
 	/* The size in bytes of each bucket of the array
 	 */
 	size_t bucket_size;
-	
+
 	/* The number of buckets that have been allocated
 	 * for the array
 	 */
 	unsigned int capacity;
-	
+
 	/* The number of buckets currently in use, including
 	 * empty buckets between occupied ones
 	 */
 	unsigned int length;
-	
+
 	/* The array data
 	 */
 	void **data;
@@ -38,7 +38,7 @@ typedef struct {
 	/* A pointer to the array being iterated over
 	 */
 	pointer_array *array;
-	
+
 	/* The current iteration index
 	 */
 	unsigned int current_index;
@@ -57,6 +57,8 @@ extern bool pointer_array_iterator_has_next(pointer_array_iterator *iter);
 extern void *pointer_array_iterator_previous(pointer_array_iterator *iter);
 extern void *pointer_array_iterator_next(pointer_array_iterator *iter);
 extern void pointer_array_iterator_free(pointer_array_iterator *iter);
+
+extern void pointer_array_sort(pointer_array *arr, int (*comparator)(const void *, const void *));
 
 extern unsigned int pointer_array_length(pointer_array *arr);
 

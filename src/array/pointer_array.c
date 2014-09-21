@@ -16,22 +16,22 @@ bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity
  */
 pointer_array *pointer_array_new() {
 	unsigned int initial_capacity = 2;
-	
+
 	pointer_array *arr = malloc(sizeof(pointer_array));
 	if (arr == NULL) {
 		return NULL;
 	}
-	
+
 	arr->bucket_size = sizeof(void *);
 	arr->capacity = initial_capacity;
 	arr->length = 0;
-	
+
 	arr->data = calloc(initial_capacity, arr->bucket_size);
 	if (arr->data == NULL) {
 		free(arr);
 		return NULL;
 	}
-	
+
 	return arr;
 }
 
@@ -48,26 +48,26 @@ pointer_array *pointer_array_new() {
  */
 bool _resize_pointer_array(pointer_array **arr_ptr, unsigned int target_capacity) {
 	pointer_array *arr = *arr_ptr;
-	
+
 	unsigned int new_capacity = arr->capacity * 2;
 	while (new_capacity < target_capacity) {
 		new_capacity *= 2;
 	}
-	
+
 	size_t old_size = arr->capacity * arr->bucket_size;
 	size_t new_size = new_capacity * arr->bucket_size;
 	void *new_block = realloc(arr->data, new_size);
 	if (new_block == NULL) {
 		return false;
 	}
-	
+
 	if (new_size > old_size) {
 		memset(new_block + old_size, 0, new_size - old_size);
 	}
-	
+
 	arr->data = new_block;
 	arr->capacity = new_capacity;
-	
+
 	return true;
 }
 
@@ -88,13 +88,13 @@ bool pointer_array_set(pointer_array *arr, void *elem, unsigned int index) {
 			return false;
 		}
 	}
-	
+
 	arr->data[index] = elem;
-	
+
 	if (index + 1 > arr->length) {
 		arr->length = index + 1;
 	}
-	
+
 	return true;
 }
 
@@ -124,7 +124,7 @@ void *pointer_array_get(pointer_array *arr, unsigned int index) {
 	if (index >= arr->length) {
 		return NULL;
 	}
-	
+
 	return arr->data[index];
 }
 
@@ -139,10 +139,10 @@ pointer_array_iterator *pointer_array_iterator_get(pointer_array *arr) {
 	if (iter == NULL) {
 		return NULL;
 	}
-	
+
 	iter->array = arr;
 	iter->current_index = 0;
-	
+
 	return iter;
 }
 
@@ -183,12 +183,12 @@ bool pointer_array_iterator_has_next(pointer_array_iterator *iter) {
 void *pointer_array_iterator_previous(pointer_array_iterator *iter) {
 	if (pointer_array_iterator_has_previous(iter)) {
 		void *elem = pointer_array_get(iter->array, iter->current_index - 1);
-		
+
 		iter->current_index -= 1;
-		
+
 		return elem;
 	}
-	
+
 	return NULL;
 }
 
@@ -202,12 +202,12 @@ void *pointer_array_iterator_previous(pointer_array_iterator *iter) {
 void *pointer_array_iterator_next(pointer_array_iterator *iter) {
 	if (pointer_array_iterator_has_next(iter)) {
 		void *elem = pointer_array_get(iter->array, iter->current_index);
-		
+
 		iter->current_index += 1;
-		
+
 		return elem;
 	}
-	
+
 	return NULL;
 }
 
@@ -220,6 +220,17 @@ void *pointer_array_iterator_next(pointer_array_iterator *iter) {
  */
 void pointer_array_iterator_free(pointer_array_iterator *iter) {
 	free(iter);
+}
+
+/* Public Sorts the contents of an array in place.
+ *
+ * arr - The array to sort
+ * comparator - The function to use to compare elements
+ *
+ * Returns nothing.
+ */
+void pointer_array_sort(pointer_array *arr, int (*comparator)(const void *, const void *)) {
+	qsort(arr->data, pointer_array_length(arr), arr->bucket_size, comparator);
 }
 
 /* Public: Gets the length of an existing array.
